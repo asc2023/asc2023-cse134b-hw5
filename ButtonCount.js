@@ -1,7 +1,6 @@
-class ButtonCount extends HTMLElement {
+class ReactCounter extends HTMLElement {
 constructor() {
         super();
-
         const shadow = this.attachShadow({ mode: "open" });
         const button = document.createElement("button");
         button.textContent = "Times Clicked: 0";
@@ -15,5 +14,5 @@ constructor() {
     }
 }
 
-  window.customElements.define("button-counter", ButtonCount);
-  export default ButtonCount;
+  window.customElements.define("button-counter", ReactCounter);
+  export default ReactCounter;
