@@ -1,2 +1,5 @@
-[Link text Here](https://tangerine-biscuit-b087bc.netlify.app/#)
-[Link text Here](https://github.com/asc2023/cse134b-hw4)
+[Index](https://snazzy-pastelito-fbe72e.netlify.app/index.html#)
+[Method Test](https://snazzy-pastelito-fbe72e.netlify.app/methodtest.html)
+[Web Component](https://snazzy-pastelito-fbe72e.netlify.app/webcomponent.html)
+[Extra Credit](https://snazzy-pastelito-fbe72e.netlify.app/extracredit.html)
+[Link text Here](https://github.com/asc2023/cse134b-hw5)
