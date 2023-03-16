@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4K5099P2W"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-K4K5099P2W');
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" media="screen and (max-width:800px)" href="table.css"> 
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>MethodTest</title>
+   <link rel="stylesheet" href="crud.css">
+    <style>
+        body {
+            background-color: #0F0F0F;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    
+        form {
+            background-color: #3B5998;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+    
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            font-family: Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #000000;
+        }
+    
+        button[type="button"] {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family:  Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    
+        button[type="button"]:hover {
+            background-color: #3E8E41;
+        }
+    
+        #response {
+           
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+    
+        #response code {
+            color: #00FF00;
+           
+        }
+    
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+            <li><a href="nativedialogs.html">Native Dialog</a></li>
+            <li><a href="customdialog.html">Custom Dialog</a></li>
+            <li><a href="styledcrud.html">Blog</a></li>
+        </ul>
+    </nav>
+	<h1>Method Test</h1>
+	<form id="articleForm">
+		<label for="id">ID:</label>
+		<input type="number" name="id" id="id">
+	<label for="article_name">Article Name:</label>
+	<input type="text" name="article_name" id="article_name">
+
+	<label for="article_body">Article Body:</label>
+	<textarea name="article_body" id="article_body"></textarea>
+
+	<button type="button" onclick="makeRequest('POST')">POST</button>
+	<button type="button" onclick="makeRequest('GET')">GET</button>
+	<button type="button" onclick="makeRequest('PUT')">PUT</button>
+	<button type="button" onclick="makeRequest('DELETE')">DELETE</button>
+</form>
+
+<h2>Response:</h2>
+<output id="response"></output>
+<script>
+    function getCurrentDateTime() {
+        let currentDate = new Date();
+        return currentDate.toISOString();
+    }
+    function validateForm() {
+        let form = document.getElementById("articleForm");
+        let fields = form.querySelectorAll("input, textarea");
+        let isValid = true;
+        fields.forEach(function(field) {
+            if (field.value.trim() === "") {
+                isValid = false;
+            }
+        });
+        return isValid;
+    }
+
+async function makeRequest(method) {
+    if (!validateForm()) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    let formData = new FormData(document.getElementById("articleForm"));
+    let dateTime = getCurrentDateTime();
+    formData.append("date", dateTime);
+
+    let endpoint;
+    switch(method) {
+        case "POST":
+            endpoint = "https://httpbin.org/post";
+            break;
+        case "GET":
+            endpoint = "https://httpbin.org/get";
+            break;
+        case "PUT":
+            endpoint = "https://httpbin.org/put";
+            break;
+        case "DELETE":
+            endpoint = "https://httpbin.org/delete";
+            break;
+    }
+
+    let response;
+    if (method === "GET" || method === "DELETE") {
+        endpoint += `?${new URLSearchParams(formData).toString()}`;
+        formData = null;
+    }
+    response = await fetch(endpoint, {
+        method: method,
+        body: formData
+    });
+
+    let json = await response.json();
+    let responseOutput = document.getElementById("response");
+    responseOutput.innerHTML = JSON.stringify(json, null, 4);
+}
+
+</script>
+</body>
+</html>
+

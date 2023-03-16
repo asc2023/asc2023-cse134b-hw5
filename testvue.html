@@ -1,0 +1,37 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Test</title>
+
+    <!-- This is a development version of Vue.js! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Basic usage -->
+
+    <div id="view-counter">
+        <button @click="incrementCount">Times Clicked: {{ count }}</button>
+    </div>
+
+   <script>
+      new Vue({
+        el: '#view-counter',
+        data: {
+          count: 0
+        },
+        methods: {
+          incrementCount() {
+            this.count++;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

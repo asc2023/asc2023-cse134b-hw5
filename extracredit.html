@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View and React Extra Credit</title>
+    <!-- react imports -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- vue imports -->
+      <!-- This is a development version of Vue.js! -->
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+      <!-- import stylesheet -->
+      <link rel="stylesheet" href="styles.css" />
+  
+      <!-- Google fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+</head>
+<body>
+    <h1>React component</h1>
+    <div id="react-button"></div>
+    <script type="text/babel" src="Button.jsx"></script>
+    <h1>Vue Component</h1>
+    <div id="view-counter">
+        <button @click="incrementCount">Times Clicked: {{ count }}</button>
+    </div>
+
+   <script>
+      new Vue({
+        el: '#view-counter',
+        data: {
+          count: 0
+        },
+        methods: {
+          incrementCount() {
+            this.count++;
+          }
+        }
+      });
+    </script>
+</body>
+</html>
